@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .search-container {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#search-input {
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+}
+
+#search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+}
+
+#search-results li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#search-results li:hover {
+  background-color: #f5f5f5;
+}
+    </style>
+
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search">
+        <ul id="search-results">
+            <li>Sufyan</li>
+            <li>Ali</li>
+            <li>Ahmad</li>
+            <li>Usman</li>
+            <li>Talha</li>
+            <li>Car</li>
+            <li>Bus</li>
+            <li>Mobile</li>
+        </ul>
+      </div>
+      <script>
+        const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
+searchInput.addEventListener('input', function() {
+  const searchQuery = searchInput.value.toLowerCase();
+  const searchItems = document.querySelectorAll('#search-results li');
+
+  searchItems.forEach(function(item) {
+    const itemName = item.innerText.toLowerCase();
+
+    if (itemName.includes(searchQuery)) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+
+  if (searchQuery !== '') {
+    searchResults.style.display = 'block';
+  } else {
+    searchResults.style.display = 'none';
+  }
+});
+
+searchResults.addEventListener('click', function(event) {
+  const selectedResult = event.target.innerText;
+  searchInput.value = selectedResult;
+  searchResults.style.display = 'none';
+});
+      </script>
+</body>
+</html>
